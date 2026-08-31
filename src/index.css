@@ -1,0 +1,140 @@
+/* 1. IMPORTS FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+/* 2. TAILWIND DIRECTIVES */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3. CUSTOM ENVELOPE CSS */
+.env-base {
+  width: min(85vw, 500px); 
+  aspect-ratio: 320 / 230;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+/* Flap */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: #fbe6dd;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  pointer-events: none;
+  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
+  z-index: 4;
+}
+
+/* Letter */
+.letter {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.letter p {
+  font-size: clamp(20px, 5vw, 40px);
+}
+
+/* Front Pockets */
+.pocket-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+  clip-path: polygon(0 100%, 100% 100%, 0 0);
+  border-bottom-left-radius: 10px;
+  box-shadow: inset -8px 0 15px rgba(0,0,0,0.06);
+  z-index: 3;
+}
+
+.pocket-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+  clip-path: polygon(100% 100%, 0 100%, 100% 0);
+  border-bottom-right-radius: 10px;
+  box-shadow: inset 8px 0 15px rgba(0,0,0,0.06);
+  z-index: 3;
+}
+
+.pocket-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: #f7f7f7;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: inset 0 8px 15px rgba(0,0,0,0.06);
+  z-index: 4;
+}
+
+/* Logo / Names */
+.logo {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #888;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.logo-text {
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(24px, 5vw, 42px);
+  color: #555;
+  line-height: 1.2;
+}
+
+/* Fonts */
+.font-alex-brush { font-family: 'Alex Brush', cursive; }
+.font-eb-garamond { font-family: 'EB Garamond', serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+/* OPEN STATE ONLY */
+.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), z-index 0s 0.4s;
+}
+
+.open .letter {
+  transform: translateY(-25%);
+  z-index: 2;
+  transition: transform 0.8s ease 0.4s, z-index 0s 0.4s;
+}
+
+/* 4. GLOBAL BACKGROUND */
+@layer base {
+  body {
+    @apply bg-[#1661ac];
+  }
+}
