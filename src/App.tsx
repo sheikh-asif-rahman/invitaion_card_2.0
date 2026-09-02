@@ -1,10 +1,84 @@
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 import Envelope from './components/Envelope';
+import Hero from './components/Hero';
+import CeremonyInfo from './components/Ceremony_info';
+import Background from './components/Background';
+
+function AppContent() {
+  const navigate = useNavigate();
+  const [isOpening, setIsOpening] = useState(false);
+
+  const handleEnvelopeClick = () => {
+    setIsOpening(true);
+    setTimeout(() => {
+      navigate('/main');
+      setIsOpening(false);
+    }, 1500);
+  };
+
+  return (
+    <Background>
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route path="/" element={
+            <motion.div
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ 
+                opacity: isOpening ? 0 : 1,
+                scale: isOpening ? 1.2 : 1,
+              }}
+              transition={{ 
+                duration: 1.2, 
+                ease: "easeOut" 
+              }}
+              exit={{ 
+                opacity: 0,
+                scale: 0.8,
+                transition: { duration: 0.8 }
+              }}
+            >
+              <Envelope onOpen={handleEnvelopeClick} />
+            </motion.div>
+          } />
+
+          <Route path="/main" element={
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                transition: { 
+                  duration: 0.8, 
+                  ease: "easeOut",
+                  delay: 0.2
+                }
+              }}
+              exit={{ 
+                opacity: 0,
+                scale: 0.8,
+                transition: { duration: 0.5 }
+              }}
+            >
+              {/* No blank gaps between sections */}
+              <div>
+                <Hero />
+                <CeremonyInfo />
+              </div>
+            </motion.div>
+          } />
+        </Routes>
+      </AnimatePresence>
+    </Background>
+  );
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-      <Envelope />
-    </div>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

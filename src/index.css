@@ -6,31 +6,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 3. CUSTOM ENVELOPE CSS */
+/* 3. GLOBAL COLOR VARIABLES - LIGHT RED & GOLD THEME */
+:root {
+  /* Primary Colors - Light Red & Gold Theme */
+  --color-primary-red: #C41E3A;
+  --color-primary-red-light: #E8A0A0;
+  --color-primary-red-lighter: #F5C8C8;
+  --color-primary-red-soft: #FCE4E0;
+  --color-primary-red-lightest: #FFF5F3;
+  --color-primary-red-bg: #FFF0ED;
+  
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8C84A;
+  --color-gold-lighter: #F5E08A;
+  --color-gold-soft: #F5E6CA;
+  --color-gold-lightest: #FFFBF0;
+  --color-gold-bg: #FDF5E6;
+  
+  /* Envelope Colors */
+  --color-envelope-bg: #FFF8F5;
+  --color-envelope-flap: #FCE4E0;
+  --color-envelope-pocket: #FFF8F5;
+  --color-envelope-bottom: #FCE4E0;
+  --color-envelope-border: #F5D0C5;
+  
+  /* Background Colors - Light */
+  --color-bg-primary: #FFF8F5;
+  --color-bg-secondary: #FCE4E0;
+  --color-bg-card: #FFF8F5;
+  --color-bg-gradient-start: #FFF0ED;
+  --color-bg-gradient-end: #FDF5E6;
+  
+  /* Text Colors */
+  --color-text-primary: #4A1A1A;
+  --color-text-secondary: #6B3A3A;
+  --color-text-gold: #B8860B;
+  --color-text-red: #C41E3A;
+  
+  /* Shadow Colors */
+  --color-shadow: rgba(196, 30, 58, 0.1);
+  --color-shadow-gold: rgba(212, 175, 55, 0.2);
+  --color-shadow-red: rgba(196, 30, 58, 0.15);
+}
+
+/* 4. CUSTOM ENVELOPE CSS */
 .env-base {
   width: min(85vw, 500px); 
   aspect-ratio: 320 / 230;
   position: relative;
   cursor: pointer;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 10px 25px var(--color-shadow));
+  border-radius: 10px;
+  background: var(--color-envelope-bg);
 }
 
-/* Flap */
+/* Flap - Light Red */
 .flap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 55%;
-  background: #fbe6dd;
+  background: var(--color-envelope-flap);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
   pointer-events: none;
-  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
+  box-shadow: inset 0 -10px 20px rgba(196, 30, 58, 0.08);
   z-index: 4;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), z-index 0s 0.4s;
 }
 
-/* Letter */
+/* Letter - Light Gold */
 .letter {
   position: absolute;
   left: 5%;
@@ -38,32 +84,40 @@
   top: 5%;
   width: 90%;
   height: 90%;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #FFF8F5, #FDF5E6);
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px var(--color-shadow);
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: transform 0.8s ease 0.4s, z-index 0s 0.4s;
+  border: 2px solid var(--color-gold-soft);
 }
 
 .letter p {
   font-size: clamp(20px, 5vw, 40px);
+  font-family: 'EB Garamond', serif;
+  background: linear-gradient(135deg, var(--color-primary-red), var(--color-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Front Pockets */
+/* Front Pockets - Light */
 .pocket-left {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #f7f7f7;
+  background: var(--color-envelope-pocket);
   clip-path: polygon(0 100%, 100% 100%, 0 0);
   border-bottom-left-radius: 10px;
-  box-shadow: inset -8px 0 15px rgba(0,0,0,0.06);
+  box-shadow: inset -8px 0 15px rgba(196, 30, 58, 0.05);
   z-index: 3;
+  border-right: 2px solid var(--color-envelope-border);
 }
 
 .pocket-right {
@@ -72,11 +126,12 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background: #f7f7f7;
+  background: var(--color-envelope-pocket);
   clip-path: polygon(100% 100%, 0 100%, 100% 0);
   border-bottom-right-radius: 10px;
-  box-shadow: inset 8px 0 15px rgba(0,0,0,0.06);
+  box-shadow: inset 8px 0 15px rgba(196, 30, 58, 0.05);
   z-index: 3;
+  border-left: 2px solid var(--color-envelope-border);
 }
 
 .pocket-bottom {
@@ -85,15 +140,17 @@
   left: 0;
   width: 100%;
   height: 65%;
-  background: #f7f7f7;
+  background: var(--color-envelope-bottom);
   clip-path: polygon(0 100%, 50% 0, 100% 100%);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: inset 0 8px 15px rgba(0,0,0,0.06);
+  box-shadow: inset 0 8px 15px rgba(196, 30, 58, 0.06);
   z-index: 4;
+  border-left: 2px solid var(--color-gold-light);
+  border-right: 2px solid var(--color-gold-light);
 }
 
-/* Logo / Names */
+/* Logo / Names - Gold */
 .logo {
   position: absolute;
   bottom: 5%;
@@ -102,7 +159,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #888;
+  color: var(--color-text-secondary);
   z-index: 5;
   pointer-events: none;
 }
@@ -110,8 +167,15 @@
 .logo-text {
   font-family: 'Alex Brush', cursive;
   font-size: clamp(24px, 5vw, 42px);
-  color: #555;
+  color: var(--color-gold-dark);
   line-height: 1.2;
+  text-shadow: 0 2px 4px var(--color-shadow-gold);
+}
+
+/* Heart SVG Color */
+.logo svg {
+  fill: var(--color-primary-red-soft);
+  stroke: var(--color-gold);
 }
 
 /* Fonts */
@@ -120,21 +184,120 @@
 .font-inter { font-family: 'Inter', sans-serif; }
 
 /* OPEN STATE ONLY */
-.open .flap {
+.env-base.open .flap {
   transform: rotateX(180deg);
   z-index: 1;
-  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), z-index 0s 0.4s;
 }
 
-.open .letter {
+.env-base.open .letter {
   transform: translateY(-25%);
   z-index: 2;
-  transition: transform 0.8s ease 0.4s, z-index 0s 0.4s;
 }
 
-/* 4. GLOBAL BACKGROUND */
+/* 5. GLOBAL BACKGROUND - LIGHT */
 @layer base {
   body {
-    @apply bg-[#1661ac];
+    background: linear-gradient(135deg, 
+      var(--color-bg-gradient-start) 0%, 
+      var(--color-bg-gradient-end) 50%, 
+      var(--color-bg-gradient-start) 100%
+    );
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
+}
+
+/* 6. RESPONSIVE */
+@media (max-width: 480px) {
+  .env-base {
+    width: min(90vw, 320px);
+  }
+  
+  .logo-text {
+    font-size: clamp(18px, 4vw, 28px);
+  }
+  
+  .letter p {
+    font-size: clamp(16px, 4vw, 24px);
+  }
+}
+
+@media (min-width: 768px) {
+  .env-base {
+    width: min(70vw, 500px);
+  }
+}
+
+/* 7. GOLDEN SHIMMER ANIMATION */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, 
+    var(--color-gold-light), 
+    var(--color-gold-lighter), 
+    var(--color-gold-light), 
+    var(--color-gold), 
+    var(--color-gold-light)
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* 8. RED GLOW - Light */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px var(--color-shadow); }
+  50% { box-shadow: 0 0 40px var(--color-shadow-red), 0 0 60px var(--color-shadow-gold); }
+}
+
+.env-base:not(.open):hover {
+  animation: glow 2s ease-in-out infinite;
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.env-base:not(.open):active {
+  transform: scale(0.98);
+}
+
+/* 9. SCROLLBAR STYLING */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gold-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--color-primary-red-soft), var(--color-gold-soft));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--color-primary-red-light), var(--color-gold-light));
+}
+
+/* Add these to your existing index.css */
+
+/* Floating animations for decorative elements */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(15px) rotate(-10deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 8s ease-in-out infinite;
 }
