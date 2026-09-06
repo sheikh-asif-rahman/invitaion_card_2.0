@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Envelope from './components/Envelope';
 import Hero from './components/Hero';
 import CeremonyInfo from './components/Ceremony_info';
+import CelebrateTime from './components/Celebrate_time';
 import Background from './components/Background';
 
 function AppContent() {
@@ -61,10 +62,10 @@ function AppContent() {
                 transition: { duration: 0.5 }
               }}
             >
-              {/* No blank gaps between sections */}
-              <div>
+              <div className="space-y-0">
                 <Hero />
                 <CeremonyInfo />
+                <CelebrateTime />
               </div>
             </motion.div>
           } />

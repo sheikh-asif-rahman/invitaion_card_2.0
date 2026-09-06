@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView, type Variants } from 'framer-motion';
+import DecorativeElements from './DecorativeElements';
 
 const Hero: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
@@ -82,7 +83,7 @@ const Hero: React.FC = () => {
     },
   };
 
-  const heartVariants: Variants = {
+  const decorativeVariants: Variants = {
     hidden: {
       opacity: 0,
       scale: 0.5,
@@ -114,19 +115,19 @@ const Hero: React.FC = () => {
   return (
     <motion.section
       ref={ref}
-      className="w-full flex flex-col items-center justify-center px-4 sm:px-8 min-h-screen pt-26 sm:pt-40 md:pt-20 pb-0 sm:pb-0 md:pb-0"
+      className="w-full flex flex-col items-center justify-center px-4 sm:px-8 pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       exit="exit"
     >
       <div className="text-center max-w-6xl w-full mx-auto">
-        {/* Image - BIGGER on mobile & tablet */}
+        {/* Image */}
         <motion.div
-          className="flex justify-center mb-8 sm:mb-10 md:mb-12"
+          className="flex justify-center mb-4 sm:mb-5 md:mb-6"
           variants={imageVariants}
         >
-          <div className="w-64 sm:w-80 md:w-72 lg:w-80 xl:w-96 2xl:w-[400px] aspect-square rounded-full overflow-hidden shadow-2xl ring-4 ring-[#FCE4E0] ring-offset-4">
+          <div className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-[340px] aspect-square rounded-full overflow-hidden shadow-2xl ring-4 ring-[#FCE4E0] ring-offset-4">
             <img
               src="/Hero.jpg"
               alt="Ainur & Nimni"
@@ -135,28 +136,13 @@ const Hero: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Heart Icon - BIGGER */}
-        <motion.div
-          className="flex justify-center mb-4 sm:mb-5 md:mb-6"
-          variants={heartVariants}
-        >
-          <svg
-            width="56"
-            height="56"
-            viewBox="0 0 24 24"
-            fill="#FCE4E0"
-            stroke="#D4AF37"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="heart-pulse w-12 h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16"
-          >
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
+        {/* Modern Decorative Elements */}
+        <motion.div variants={decorativeVariants}>
+          <DecorativeElements />
         </motion.div>
 
-        {/* Name - BIGGER font on mobile & tablet */}
-        <div className="flex flex-wrap justify-center whitespace-nowrap">
+        {/* Name */}
+        <div className="flex flex-wrap justify-center whitespace-nowrap mt-4 sm:mt-5 md:mt-6">
           {nameText.split("").map((letter, index) => (
             <motion.span
               key={index}
@@ -165,7 +151,7 @@ const Hero: React.FC = () => {
               style={{
                 display: "inline-block",
                 fontFamily: "'EB Garamond', serif",
-                fontSize: "clamp(3rem, 10vw, 7rem)",
+                fontSize: "clamp(2.5rem, 8vw, 5.5rem)",
                 background: "linear-gradient(135deg, #C41E3A, #D4AF37)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
