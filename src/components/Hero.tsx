@@ -141,7 +141,7 @@ const Hero: React.FC = () => {
           <DecorativeElements />
         </motion.div>
 
-        {/* Name */}
+        {/* Name - Using Alex Brush font */}
         <div className="flex flex-wrap justify-center whitespace-nowrap mt-4 sm:mt-5 md:mt-6">
           {nameText.split("").map((letter, index) => (
             <motion.span
@@ -150,13 +150,14 @@ const Hero: React.FC = () => {
               variants={letterVariants}
               style={{
                 display: "inline-block",
-                fontFamily: "'EB Garamond', serif",
+                fontFamily: "'Alex Brush', cursive",
                 fontSize: "clamp(2.5rem, 8vw, 5.5rem)",
                 background: "linear-gradient(135deg, #C41E3A, #D4AF37)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 whiteSpace: "nowrap",
+                lineHeight: 1.2,
               }}
             >
               {letter === " " ? "\u00A0" : letter}

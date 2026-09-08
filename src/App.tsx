@@ -5,6 +5,9 @@ import Envelope from './components/Envelope';
 import Hero from './components/Hero';
 import CeremonyInfo from './components/Ceremony_info';
 import CelebrateTime from './components/Celebrate_time';
+import ReceptionVenue from './components/Reception_venue';
+import SchedulesDresscode from './components/Schedules_Dresscode';
+import Footer from './components/Footer';
 import Background from './components/Background';
 
 function AppContent() {
@@ -66,6 +69,9 @@ function AppContent() {
                 <Hero />
                 <CeremonyInfo />
                 <CelebrateTime />
+                <ReceptionVenue />
+                <SchedulesDresscode />
+                <Footer />
               </div>
             </motion.div>
           } />
