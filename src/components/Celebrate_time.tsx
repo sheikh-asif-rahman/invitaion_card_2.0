@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, type Variants, AnimatePresence } from 'framer-motion';
+import { motion, useInView, type Variants } from 'framer-motion';
 import DecorativeElements from './DecorativeElements';
 
 const CelebrateTime: React.FC = () => {
@@ -79,7 +79,7 @@ const CelebrateTime: React.FC = () => {
     },
   };
 
-  // Countdown Timer
+  // Countdown Timer - Target: October 30, 2026 at 8:00 PM
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -88,7 +88,7 @@ const CelebrateTime: React.FC = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-12-12T20:00:00').getTime();
+    const targetDate = new Date('2026-10-30T20:00:00').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -109,12 +109,12 @@ const CelebrateTime: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Calendar data for December 2026
+  // Calendar data for October 2026
   const calendarData = {
-    month: "December",
+    month: "October",
     year: "2026",
     days: Array.from({ length: 31 }, (_, i) => ({ day: i + 1, date: i + 1 })),
-    firstDayOfMonth: 2 // Tuesday
+    firstDayOfMonth: 3 // Thursday (0 = Sunday, 3 = Thursday)
   };
 
   const weekDays = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
@@ -210,7 +210,7 @@ const CelebrateTime: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Date - Saturday 12 December */}
+        {/* Date - Friday 30 October */}
         <motion.div variants={textVariants} className="mb-5 sm:mb-6 md:mb-8">
           <p 
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wider"
@@ -222,7 +222,7 @@ const CelebrateTime: React.FC = () => {
               backgroundClip: "text",
             }}
           >
-            SATURDAY — 12 — DECEMBER
+            FRIDAY — 30 — OCTOBER
           </p>
         </motion.div>
 
@@ -451,7 +451,7 @@ const CelebrateTime: React.FC = () => {
 
                 {/* Calendar Days with staggered animation */}
                 {calendarData.days.map((day, index) => {
-                  const isToday = day.date === 12;
+                  const isToday = day.date === 30;
                   return (
                     <motion.div
                       key={day.date}
@@ -535,7 +535,7 @@ const CelebrateTime: React.FC = () => {
                     }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    ⭐ 12 December 2026
+                    ⭐ 30 October 2026
                   </motion.span>
                 </motion.div>
               </motion.div>

@@ -292,7 +292,7 @@ const CeremonyInfo: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Date */}
+        {/* Date - Updated to October 30, 2026 */}
         <motion.div
           variants={textVariants}
           className="flex flex-col items-center"
@@ -317,7 +317,7 @@ const CeremonyInfo: React.FC = () => {
                 backgroundClip: "text",
               }}
             >
-              31
+              30
             </p>
             <span 
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light"
@@ -338,7 +338,7 @@ const CeremonyInfo: React.FC = () => {
                 backgroundClip: "text",
               }}
             >
-              JULY
+              OCTOBER
             </p>
           </div>
         </motion.div>
